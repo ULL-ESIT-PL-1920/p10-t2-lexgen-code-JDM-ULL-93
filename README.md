@@ -83,18 +83,18 @@ init.author.url=https://github.com/JDM-ULL-93
 ```
 1) Cree un token en github dirigiendome a *Settings->Developer Settings->Personal access tokens*-> boton *"Generate New Token"* y seteandole los siguientes permisos:
 
-[permisos_tokens.jpg](./img/permisos_tokens.jpg)
+[permisos_tokens.jpg](./img/permisos_tokens.jpg?raw=true)
 
 2) Copie el codigo del token creado (una cadena de 40 digitos hexadecimales) y, con ese codigo copiado, ejecute el siguiente comando:
 
 ```sh
 npm login --registry=https://npm.pkg.github.com
 ```
-[comando_npm_login.jpg](./img/comando_npm_login.jpg)
+[comando_npm_login.jpg](./img/comando_npm_login.jpg?raw=true)
 
 3) Introduciendo lo siguiente :
 
-[datos_npm_login.jpg](./img/datos_npm_login.jpg)
+[datos_npm_login.jpg](./img/datos_npm_login.jpg?raw=true)
 
 ***Nota***: *En password pegue la cadena del token creado anteriormente*
 
@@ -104,7 +104,7 @@ Nuevamente, todo esto modifica nuestro fichero *'~/.npmrc'* añadiendole la sigu
 //npm.pkg.github.com/:_authToken=<cadena de 40 digitos hexadecimales>
 ```
 
-Bien, ya estamos listos para publicar nuestro modulo como un paquete(*package*) en Github Registry, pero antes, dado que queremos publicarlo en el repositorio *"@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93"*, modificaremos el fichero *"package.json"* cambiando el atributo *"name"* por esto:
+Bien, ya estamos listos para publicar nuestro modulo como un paquete(*package*) en Github Registry, pero antes, dado que queremos publicarlo en el repositorio *"@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93"* (en mi caso), modificaremos el fichero *"package.json"* cambiando el atributo *"name"* por esto:
 
 ```json
 "name": "@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93",
