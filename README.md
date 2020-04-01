@@ -83,18 +83,18 @@ init.author.url=https://github.com/JDM-ULL-93
 ```
 1) Cree un token en github dirigiendome a *Settings->Developer Settings->Personal access tokens*-> boton *"Generate New Token"* y seteandole los siguientes permisos:
 
-[permisos_tokens](./img/permisos_tokens.jpg?raw=true)
+![permisos_tokens](./img/permisos_tokens.jpg?raw=true)
 
 2) Copie el codigo del token creado (una cadena de 40 digitos hexadecimales) y, con ese codigo copiado, ejecute el siguiente comando:
 
 ```sh
 npm login --registry=https://npm.pkg.github.com
 ```
-[comando_npm_login](./img/comando_npm_login.jpg?raw=true)
+![comando_npm_login](./img/comando_npm_login.jpg?raw=true)
 
 3) Introduciendo lo siguiente :
 
-[datos_npm_login](./img/datos_npm_login.jpg?raw=true)
+![datos_npm_login](./img/datos_npm_login.jpg?raw=true)
 
 ***Nota***: *En password pegue la cadena del token creado anteriormente*
 
