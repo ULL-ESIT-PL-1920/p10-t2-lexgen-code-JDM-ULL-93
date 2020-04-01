@@ -22,7 +22,7 @@ let tokens = [
 Y con ese array, se construye un analizador léxico en forma de función que recibe como argumento la cadena a analizar
  
 ```js
-const {buildLexer} = require("@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93");
+const {buildLexer} = require(".lexer");
 let tokens = [ ... ]; //Formato explicado anteriormente
  
 const analizadorLexico = buildLexer(tokens);
