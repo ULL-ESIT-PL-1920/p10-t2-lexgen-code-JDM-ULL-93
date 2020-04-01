@@ -2,7 +2,7 @@ const debug = process.env["DEBUG"];
 const { inspect } = require('util');
 const ins = (x) => { if (debug) console.log(inspect(x, {depth: null})) };
 
-const {buildLexer} = require('./lexer');
+const {buildLexer} = require('../lib/lexer');
 
 const SPACE = /(?<SPACE>\s+|\/\/.*)/;
 const RESERVEDWORD = /(?<RESERVEDWORD>\b(const|let)\b)/;
