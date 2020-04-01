@@ -1,5 +1,12 @@
 # Lexer - Alu0101160337
  
+**NOTA**
+No olvidarse de configurar entorno con :
+```sh
+npm config set @ull-esit-pl-1920:registry https://npm.pkg.github.com
+```
+
+Antes de intentar *npm install*
  
 Este módulo consiste en un método que recibe un array con el siguiente formato:
 ```js
@@ -15,7 +22,7 @@ let tokens = [
 Y con ese array, se construye un analizador léxico en forma de función que recibe como argumento la cadena a analizar
  
 ```js
-const {buildLexer} = require('./lexer');
+const {buildLexer} = require("@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93");
 let tokens = [ ... ]; //Formato explicado anteriormente
  
 const analizadorLexico = buildLexer(tokens);
@@ -104,11 +111,67 @@ Nuevamente, todo esto modifica nuestro fichero *'~/.npmrc'* añadiendole la sigu
 //npm.pkg.github.com/:_authToken=<cadena de 40 digitos hexadecimales>
 ```
 
-Bien, ya estamos listos para publicar nuestro modulo como un paquete(*package*) en Github Registry, pero antes, dado que queremos publicarlo en el repositorio *"@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93"* (en mi caso), modificaremos el fichero *"package.json"* cambiando el atributo *"name"* por esto:
+Bien, ya estamos casi listos para publicar nuestro modulo como un paquete(*package*) en Github Registry, pero antes, dado que queremos publicarlo en el repositorio *"@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93"* (en mi caso), modificaremos el fichero *"package.json"* cambiando el atributo *"name"* por esto:
 
 ```json
 "name": "@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93",
 ```
 
+Como lo que queremos es subirlo a Github packages , además, le añadimos la siguiente propiedad al mismo *"package.json"*:
+
+```json
+"publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+```
+
+Ya esta casi todo listo, en mi caso, como publico el modulo sobre el mismo repositorio, me interesa que varios ficheros y directorios no se incluyan en la publicación, para ello, en el mismo directorio de *"package.json"* creo un fichero llamado *".npmignore"* que funciona exactamente de la misma forma que un *".gitignore"*, de modo que le agrego lo siguiente:
+
+```
+img/
+.github/
+.gitignore
+.git/
+lexer.test.js
+```
+ 
+ Ahora si, ahora estamos listos, solo falta publicarlo, y eso lo logramos con la llamada al comando:
+
+ ```sh
+ npm publish
+ ```
+
+![npm_publish](./img/npm_publish.jpg?raw=true)
+
+Por norma general, en la versión mas minimalista, solo nos interesa que se suban 3 ficheros:
+1) README.md, fichero que contendra documentación sobre como usar el modulo
+2) package.json, fichero que indicará las dependencias de otros modulos y como se invocará el modulo 
+3) lexer.js , en mi caso, el fichero script que contiene el codigo del modulo, por norma general es "index.js"
 
 
+# Uso del modulo
+
+Para empezar, para que npm pueda buscar y encontrar nuestro modelo, en todas las maquinas en las que queramos usarla deberemos escribir una vez el siguiente comando:
+
+```sh
+npm config set @ull-esit-pl-1920:registry https://npm.pkg.github.com
+```
+
+Esto sirve para vincular un ambito(scope) a un repositorio sobre el que buscarlo, de forma que todo modulo que se encuentra dentro del ambito *"@ull-esit-pl-1920"* siempre será buscado en https://npm.pkg.github.com 
+
+Y nos introducirá en ~/.npmrc la siguiente linea:
+
+```ini
+@ull-esit-pl-1920:registry=https://npm.pkg.github.com
+```
+
+Una vez tenemos el entorno configurado y listo, siempre que queramos utilizar nuestro modulo:
+1) Primero lo instalaremos con:
+```sh
+npm install @ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93[@1.0.3]
+```
+
+2) Y luego lo usaremos en nuestro codigo con
+```js
+const {buildLexer} = require("@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93")
+```
