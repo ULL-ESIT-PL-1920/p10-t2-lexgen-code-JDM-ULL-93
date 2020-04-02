@@ -1,10 +1,11 @@
 {
   "name": "@ull-esit-pl-1920/p10-t2-lexgen-code-jdm-ull-93",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "lexer.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
