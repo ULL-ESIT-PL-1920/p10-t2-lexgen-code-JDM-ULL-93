@@ -16,32 +16,30 @@ const str = 'let x = a + \nb';
 console.log(buildLexer(myTokens)(str));
 */
 function buildLexer(tokens = []){
+    const tokenNames = tokens.map(t => t[0]);
+    const tokenRegs  = tokens.map(t => t[1]);
+    const ignoreTokens = [];
+    tokens.forEach(t => ignoreTokens[t[0]] = t[2] ? t[2] : false);
+        //console.log(tokenFunctions);
+      
+    const buildOrRegexp = (regexps) => {
+        const sources = regexps.map(r => r.source);
+        const union = sources.join('|');
+        // console.log(union);
+        return new RegExp(union, "yu");
+    };
+    
+    const regexp = buildOrRegexp(tokenRegs);
+    
+    const getToken = (match) => tokenNames.find(tn => typeof match[tn] !== 'undefined');
+
+    const make = (value,type) => { return {"type":type, "value":value} };
 
     return (str) =>{
 
         let result = [];
         let ERROR = /.*/yu;
-        let match;
-
-        const tokenNames = tokens.map(t => t[0]);
-        const tokenRegs  = tokens.map(t => t[1]);
-        const ignoreTokens = [];
-        tokens.forEach(t => ignoreTokens[t[0]] = t[2] ? t[2] : false);
-        //console.log(tokenFunctions);
-        
-        const buildOrRegexp = (regexps) => {
-            const sources = regexps.map(r => r.source);
-            const union = sources.join('|');
-            // console.log(union);
-            return new RegExp(union, "yu");
-        };
-        
-        const regexp = buildOrRegexp(tokenRegs);
-        
-        const getToken = (match) => tokenNames.find(tn => typeof match[tn] !== 'undefined');
-
-        const make = (value,type) => { return {"type":type, "value":value} };
-        
+        let match;  
         
         while (match = regexp.exec(str)) {
             let t = getToken(match.groups);
